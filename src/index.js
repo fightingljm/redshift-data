@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import App from './App'
+import 'antd/dist/antd.css';
+
 ReactDOM.render(
-  <div>Hello World</div> ,document.getElementById('root')
+  <App/> ,document.getElementById('root')
 )
