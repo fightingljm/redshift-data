@@ -2,25 +2,10 @@ import React from 'react';
 
 import DatePicker from 'antd/lib/date-picker'
 
-function range(start, end) {
-  const result = [];
-  for (let i = start; i < end; i++) {
-    result.push(i);
-  }
-  return result;
-}
-
 function disabledDate(current) {
   // can not select days before today and today
-  return current && current.valueOf() < Date.now();
-}
-
-function disabledDateTime() {
-  return {
-    disabledHours: () => range(0, 24).splice(4, 20),
-    disabledMinutes: () => range(30, 60),
-    disabledSeconds: () => [55, 56],
-  };
+  // console.log(Date.parse('1970-01-02'));
+  return (current && current.valueOf() < (Date.now()-86400000))|| (current && current.valueOf() > (Date.parse('2017-08-31')+86400000));
 }
 
 class App extends React.Component {
@@ -28,10 +13,9 @@ class App extends React.Component {
     return(
       <div>
         <DatePicker
-          format="YYYY-MM-DD HH:mm:ss"
+          format="YYYY-MM-DD"
           disabledDate={disabledDate}
-          disabledTime={disabledDateTime}
-          showTime
+          showDate
         />
       </div>
     )
